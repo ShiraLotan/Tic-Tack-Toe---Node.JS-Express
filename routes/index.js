@@ -31,7 +31,9 @@ router.get('/reset', async function(req, res, next) {
 
 /*GET PLAYERS AND MOVES */
 router.get('/getplayersandmoves', async function(req, res, next) {
- var resualt =  await dbhelper.pool.query(`SELECT * FROM Moves`)
+ var resualt =  await dbhelper.pool.query(`SELECT * 
+                                           FROM Moves
+                                           INNER JOIN Players ON Players.pid = Moves.playerid`)
 
       res.json(resualt)
 });
